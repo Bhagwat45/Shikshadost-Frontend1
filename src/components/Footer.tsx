@@ -1,0 +1,1 @@
+export default function Footer() { return <footer className="border-t border-slate-200 px-5 py-6 text-center text-sm text-slate-500 dark:border-slate-800">© {new Date().getFullYear()} ShikshaDost. Built for better campuses.</footer> }

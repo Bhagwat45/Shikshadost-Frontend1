@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Design Tokens ──────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --surface-0: #ffffff;
+    --surface-1: #f8fafc;
+    --surface-2: #f1f5f9;
+    --surface-3: #e2e8f0;
+    --sidebar-w: 260px;
+    --header-h:  60px;
+    --radius-card: 14px;
+  }
+
+  .dark {
+    --surface-0: #0f1117;
+    --surface-1: #161b27;
+    --surface-2: #1e2533;
+    --surface-3: #252d3d;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-[var(--surface-1)] text-slate-900 antialiased dark:text-slate-100;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-slate-300 dark:bg-slate-700;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400 dark:bg-slate-600;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-brand-500/20 text-brand-700 dark:bg-brand-400/20 dark:text-brand-300;
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-[var(--surface-0)];
+  }
+
+  input, textarea, select { @apply outline-none; }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+/* ─── Component Layer ────────────────────────────────────────────────────── */
+@layer components {
+
+  /* Glass card */
+  .glass {
+    @apply border border-white/20 bg-white/70 backdrop-blur-xl dark:border-white/5 dark:bg-slate-900/70;
+    box-shadow: 0 8px 32px 0 rgb(0 0 0 / 0.12);
+  }
+
+  .glass-dark {
+    @apply border border-white/5 bg-slate-950/80 backdrop-blur-2xl;
+  }
+
+  /* Card */
+  .card {
+    @apply rounded-2xl border border-slate-200/80 bg-[var(--surface-0)] shadow-card
+           dark:border-slate-800/60 dark:bg-[var(--surface-2)];
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-card-hover hover:border-slate-300 dark:hover:border-slate-700;
+  }
+
+  /* Sidebar */
+  .sidebar-link {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium
+           text-slate-600 transition-all duration-150
+           hover:bg-slate-100 hover:text-slate-900
+           dark:text-slate-400 dark:hover:bg-slate-800/70 dark:hover:text-slate-100;
+  }
+
+  .sidebar-link-active {
+    @apply bg-brand-50 text-brand-700 font-semibold
+           dark:bg-brand-500/10 dark:text-brand-300;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5
+           text-sm font-semibold transition-all duration-150 select-none
+           disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-600 text-white shadow-sm
+           hover:bg-brand-700 active:scale-[0.98]
+           dark:bg-brand-500 dark:hover:bg-brand-600;
+  }
+
+  .btn-secondary {
+    @apply btn border border-slate-200 bg-[var(--surface-0)] text-slate-700
+           hover:bg-slate-50 hover:border-slate-300
+           dark:border-slate-700 dark:text-slate-200
+           dark:hover:bg-slate-800 dark:hover:border-slate-600;
+  }
+
+  .btn-ghost {
+    @apply btn text-slate-600 hover:bg-slate-100 hover:text-slate-900
+           dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100;
+  }
+
+  .btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-700 active:scale-[0.98];
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3.5 text-base;
+  }
+
+  .btn-icon {
+    @apply btn p-2 aspect-square;
+  }
+
+  /* Input */
+  .input {
+    @apply w-full rounded-xl border border-slate-200 bg-[var(--surface-0)]
+           px-4 py-2.5 text-sm text-slate-900
+           placeholder:text-slate-400
+           transition-colors duration-150
+           focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20
+           dark:border-slate-700 dark:bg-[var(--surface-2)]
+           dark:text-slate-100 dark:placeholder:text-slate-500
+           dark:focus:border-brand-400 dark:focus:ring-brand-400/20;
+  }
+
+  .input-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5
+           text-xs font-semibold;
+  }
+
+  .badge-blue   { @apply badge bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300; }
+  .badge-green  { @apply badge bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300; }
+  .badge-amber  { @apply badge bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300; }
+  .badge-red    { @apply badge bg-red-100 text-red-700 dark:bg-red-500/15 dark:text-red-300; }
+  .badge-purple { @apply badge bg-purple-100 text-purple-700 dark:bg-purple-500/15 dark:text-purple-300; }
+  .badge-slate  { @apply badge bg-slate-100 text-slate-700 dark:bg-slate-500/15 dark:text-slate-300; }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    @apply rounded-lg bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200
+           dark:from-slate-800 dark:via-slate-700 dark:to-slate-800;
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite linear;
+  }
+
+  /* Prose for AI markdown */
+  .ai-prose {
+    @apply text-sm leading-7 text-slate-800 dark:text-slate-200;
+  }
+
+  .ai-prose h1, .ai-prose h2, .ai-prose h3 {
+    @apply font-semibold text-slate-900 dark:text-slate-100 mt-4 mb-2;
+  }
+
+  .ai-prose h1 { @apply text-xl; }
+  .ai-prose h2 { @apply text-lg; }
+  .ai-prose h3 { @apply text-base; }
+
+  .ai-prose p { @apply mb-3; }
+
+  .ai-prose ul, .ai-prose ol {
+    @apply mb-3 pl-5 space-y-1;
+  }
+
+  .ai-prose ul { @apply list-disc; }
+  .ai-prose ol { @apply list-decimal; }
+
+  .ai-prose code {
+    @apply rounded bg-slate-100 px-1.5 py-0.5 font-mono text-xs text-brand-700
+           dark:bg-slate-800 dark:text-brand-300;
+  }
+
+  .ai-prose pre {
+    @apply my-3 overflow-x-auto rounded-xl border border-slate-200
+           bg-slate-950 p-4 dark:border-slate-800;
+  }
+
+  .ai-prose pre code {
+    @apply bg-transparent p-0 text-slate-100 dark:text-slate-100;
+  }
+
+  .ai-prose blockquote {
+    @apply my-3 border-l-4 border-brand-400 pl-4 italic text-slate-600 dark:text-slate-400;
+  }
+
+  .ai-prose table {
+    @apply my-3 w-full text-sm border-collapse;
+  }
+
+  .ai-prose th {
+    @apply border border-slate-200 bg-slate-50 px-3 py-2 text-left font-semibold
+           dark:border-slate-700 dark:bg-slate-800;
+  }
+
+  .ai-prose td {
+    @apply border border-slate-200 px-3 py-2 dark:border-slate-700;
+  }
+
+  .ai-prose hr {
+    @apply my-4 border-slate-200 dark:border-slate-700;
+  }
+
+  .ai-prose a {
+    @apply text-brand-600 underline hover:text-brand-700 dark:text-brand-400;
+  }
+
+  .ai-prose strong { @apply font-semibold text-slate-900 dark:text-slate-100; }
+
+  /* Typing indicator */
+  .typing-dot {
+    @apply h-1.5 w-1.5 rounded-full bg-slate-400 dark:bg-slate-500;
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-brand bg-clip-text text-transparent;
+  }
+
+  /* Sidebar section label */
+  .sidebar-section {
+    @apply px-3 pt-5 pb-1.5 text-[10px] font-bold uppercase tracking-widest
+           text-slate-400 dark:text-slate-600;
+  }
+}
+
+/* ─── Utility overrides ──────────────────────────────────────────────────── */
+@layer utilities {
+  .bg-gradient-brand {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  }
+
+  .text-balance { text-wrap: balance; }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+
+  .no-select { user-select: none; }
+}
