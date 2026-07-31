@@ -64,7 +64,7 @@ export const chatService = {
     onDone: () => void,
     onError: (msg: string) => void,
   ): Promise<void> {
-    const baseUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:8000/api'
+    const baseUrl = import.meta.env.VITE_API_URL ?? 'https://shikshadost-backend.onrender.com/api'
     const url = `${baseUrl}/chat/conversations/${conversationId}/messages`
 
     const response = await fetch(url, {

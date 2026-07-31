@@ -73,7 +73,7 @@ function SoundwaveVisualizer({ active, color = 'brand' }: { active: boolean; col
 export default function VoiceAssistantPage() {
   const { user } = useAuth()
   const token = localStorage.getItem('shikshadost_token') ?? ''
-  const baseUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:8000/api'
+  const baseUrl = import.meta.env.VITE_API_URL ?? 'https://shikshadost-backend.onrender.com/api'
 
   const [state, setState] = useState<'idle' | 'recording' | 'processing' | 'speaking'>('idle')
   const [langIdx, setLangIdx] = useState(0)
